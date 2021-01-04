@@ -1,10 +1,9 @@
-// import logo from './logo.svg';
 // import '../index.css';
 import headerLogo from '../images/header_logo.svg';
 
 function App() {
   return (
-  <div className="page">
+  <body className="page">
     <div className="page__container">
       <header className="header">
         <img
@@ -112,7 +111,7 @@ function App() {
         <p className="footer__copyright">&copy; 2020 Mesto Russia</p>
       </footer>
     </div>
-  </div>
+  </body>
   );
 }
 
