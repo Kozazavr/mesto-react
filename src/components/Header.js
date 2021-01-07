@@ -1,3 +1,4 @@
+import React from 'react';
 // import '../index.css';
 import headerLogo from '../images/header_logo.svg';
 
