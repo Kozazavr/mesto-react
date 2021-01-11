@@ -5,32 +5,7 @@ import Main from './Main.js';
 import Footer from './Footer.js';
 import PopupWithForm from './PopupWithForm.js';
 import ImagePopup from './ImagePopup.js';
-
-// React.useEffect(() => {
-//   function handleMouseMove(event) {
-//     setPosition({
-//       top: event.pageY,
-//       left: event.pageX,
-//     });
-//   }
-
-//       // Список действий внутри одного хука
-//   document.addEventListener('mousemove', handleMouseMove);
-//   document.body.classList.add('no-cursor');
-
-//       // Возвращаем функцию, которая удаляет эффекты
-//   return () => {
-//     document.body.classList.remove('no-cursor');
-//     document.removeEventListener('mousemove', handleMouseMove);
-//   };
-// });
-
-
-
-
-
-
-
+// import api from '../utils/Api.js';
 
 function App() {
 
