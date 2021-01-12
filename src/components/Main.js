@@ -6,27 +6,44 @@ function Main({onEditProfile, onAddPlace, onEditAvatar}) {
   const [userName, setUserName] = React.useState('');
   const [userDescription, setUserDescription] = React.useState('');
   const [userAvatar, setUserAvatar] = React.useState('');
+  const [cards, setCards] = React.useState([]);
 
   React.useEffect(() => {
     api.getProfileData()
       .then(data => {
         setUserName(data.name);
-      }) 
-  }, [userName]);
-
-  React.useEffect(() => {
-    api.getProfileData()
-      .then(data => {
         setUserDescription(data.about);
-      }) 
-  }, [userDescription]);
-
-  React.useEffect(() => {
-    api.getProfileData()
-      .then(data => {
         setUserAvatar(data.avatar);
       }) 
-  }, [userAvatar]);
+  }, []);
+
+  React.useEffect(() => {
+    api.getCards()
+      .then(data => {
+        setCards(data.map((item) => ({
+          id: item._id,
+          alt: item.name,
+          src: item.link,
+          title: data.name, 
+          // likes: data.likes,
+          count: item.likes.length,
+        })))
+      }) 
+  }, []);
+
+  // React.useEffect(() => {
+  //   api.getProfileData()
+  //     .then(data => {
+  //       setUserDescription(data.about);
+  //     }) 
+  // }, [userDescription]);
+
+  // React.useEffect(() => {
+  //   api.getProfileData()
+  //     .then(data => {
+  //       setUserAvatar(data.avatar);
+  //     }) 
+  // }, [userAvatar]);
 
 
 
@@ -47,7 +64,23 @@ function Main({onEditProfile, onAddPlace, onEditAvatar}) {
         </div>
         <button className="profile__button-add-images" type="button" onClick={onAddPlace}></button>
       </section>
-      <section className="cards page__cards"></section> 
+      <section className="cards page__cards">
+      {
+        cards.map(({ id, alt, src, title, count }) => 
+        <figure className="card" key={id}>
+          <img className="card__image" alt={alt} src={src}/> 
+          <button className="card__recycle-bin" type="button"></button>
+          <figcaption className="card__figcaption">
+            <h2 className="card__title">{title}</h2>
+            <div className="card__like-container">
+              <button className="card__like" type="button"></button>
+              <p className="card__counter">{count}</p>
+            </div>
+          </figcaption>
+        </figure>
+        )
+      }  
+      </section> 
     </main>
   );
 }
