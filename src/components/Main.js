@@ -1,8 +1,10 @@
 import React from 'react';
 import api from '../utils/Api.js';
+import Card from './Card.js';
 
-function Main({onEditProfile, onAddPlace, onEditAvatar}) {
+function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
 
+  
   const [userName, setUserName] = React.useState('');
   const [userDescription, setUserDescription] = React.useState('');
   const [userAvatar, setUserAvatar] = React.useState('');
@@ -22,31 +24,14 @@ function Main({onEditProfile, onAddPlace, onEditAvatar}) {
       .then(data => {
         setCards(data.map((item) => ({
           id: item._id,
-          alt: item.name,
           src: item.link,
-          title: data.name, 
-          // likes: data.likes,
-          count: item.likes.length,
+          title: item.name, 
+          count: item.likes.length
         })))
       }) 
   }, []);
 
-  // React.useEffect(() => {
-  //   api.getProfileData()
-  //     .then(data => {
-  //       setUserDescription(data.about);
-  //     }) 
-  // }, [userDescription]);
-
-  // React.useEffect(() => {
-  //   api.getProfileData()
-  //     .then(data => {
-  //       setUserAvatar(data.avatar);
-  //     }) 
-  // }, [userAvatar]);
-
-
-
+   
   return (
     <main className="page__content">
       <section className="profile page__profile">
@@ -66,18 +51,7 @@ function Main({onEditProfile, onAddPlace, onEditAvatar}) {
       </section>
       <section className="cards page__cards">
       {
-        cards.map(({ id, alt, src, title, count }) => 
-        <figure className="card" key={id}>
-          <img className="card__image" alt={alt} src={src}/> 
-          <button className="card__recycle-bin" type="button"></button>
-          <figcaption className="card__figcaption">
-            <h2 className="card__title">{title}</h2>
-            <div className="card__like-container">
-              <button className="card__like" type="button"></button>
-              <p className="card__counter">{count}</p>
-            </div>
-          </figcaption>
-        </figure>
+        cards.map(({ id, ...props }) => <Card key={id} {...props} onCardClick={onCardClick}/> 
         )
       }  
       </section> 

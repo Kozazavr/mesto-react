@@ -12,6 +12,7 @@ function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
+  const [selectedCard, setSelectedCard] = React.useState(null);
   
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);
@@ -25,10 +26,18 @@ function App() {
     setIsEditAvatarPopupOpen(true);
   }
 
+  function handleCardClick(card) {
+    setSelectedCard({
+      src: card.src,
+      title: card.title
+    });
+  }
+
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
+    setSelectedCard(null);
   }
 
   return (
@@ -38,6 +47,7 @@ function App() {
       <Main onEditProfile={handleEditProfileClick}
             onAddPlace={handleAddPlaceClick}
             onEditAvatar={handleEditAvatarClick}
+            onCardClick={handleCardClick}
       />
       <PopupWithForm title="Редактировать профиль" name="profile" titleButton="Сохранить"
         isOpen={isEditProfilePopupOpen ? 'popup_opened' : ''}
@@ -77,7 +87,7 @@ function App() {
           <span id="input-avatar-error" className="popup__input-error"></span>
         </div>
       </PopupWithForm>
-      <ImagePopup />
+      <ImagePopup card={selectedCard} onClose={closeAllPopups}/>
       <Footer />
     </div>
   </div>
