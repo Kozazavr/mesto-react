@@ -1,7 +1,7 @@
 import React from 'react';
 
 function ImagePopup({onClose, card}) {
-
+  if(card != null) {
   return (
     <section className={`popup popup_view-images ${card ? 'popup_opened' : ''}`}>  
       <figure className="popup__picture-container">
@@ -17,6 +17,7 @@ function ImagePopup({onClose, card}) {
       </figure>
     </section>
   );
-}
+} else {return null}
+} 
 
 export default ImagePopup;
