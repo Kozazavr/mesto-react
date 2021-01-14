@@ -8,7 +8,6 @@ function Card(props) {
   
   return (
     <figure className="card">
-      {/* <div  className="card__image" style={{ backgroundImage: `url(${src})` }}></div> */}
       <img className="card__image" alt={props.title} src={props.src} onClick={handleClick}/> 
       <button className="card__recycle-bin" type="button"></button>
       <figcaption className="card__figcaption">

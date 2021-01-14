@@ -1,5 +1,4 @@
 import React from 'react';
-// import '../index.css';
 
 function ImagePopup({onClose, card}) {
   console.log(card);
@@ -19,7 +18,5 @@ function ImagePopup({onClose, card}) {
     </section>
   );
 }
-
-
 
 export default ImagePopup;

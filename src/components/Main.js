@@ -3,7 +3,6 @@ import api from '../utils/Api.js';
 import Card from './Card.js';
 
 function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
-
   
   const [userName, setUserName] = React.useState('');
   const [userDescription, setUserDescription] = React.useState('');
@@ -51,8 +50,7 @@ function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
       </section>
       <section className="cards page__cards">
       {
-        cards.map(({ id, ...props }) => <Card key={id} {...props} onCardClick={onCardClick}/> 
-        )
+        cards.map(({ id, ...props }) => <Card key={id} {...props} onCardClick={onCardClick}/>)
       }  
       </section> 
     </main>
