@@ -1,14 +1,14 @@
 import React from 'react';
 
 function ImagePopup({onClose, card}) {
-  if(card != null) {
+  
   return (
-    <section className={`popup popup_view-images ${card ? 'popup_opened' : ''}`}>  
+    <section className={`popup popup_view-images ${card ? 'popup_opened' : ''}`}>   
       <figure className="popup__picture-container">
         <button type="button" className="popup__close popup__close_view-image" onClick={onClose}></button>
         <img 
           className="popup__picture" 
-          alt={`${card ? card.title : ''}`} 
+          alt={`${card ? card.title : ''}`}
           src={`${card ? card.src : ''}`}
         />
         <figcaption className="popup__picture-figcaption">
@@ -17,7 +17,7 @@ function ImagePopup({onClose, card}) {
       </figure>
     </section>
   );
-} else {return null}
 } 
 
 export default ImagePopup;
+
