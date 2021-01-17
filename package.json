@@ -1,8 +1,8 @@
 {
-  "name": "mesto",
+  "name": "mesto-react",
   "version": "0.1.0",
   "description": "Проектная работа в **Яндекс.Практикум**.",
-  "private": true,
+  "main": "index.js",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.8",
     "@testing-library/react": "^11.2.2",
@@ -24,7 +24,7 @@
     "type": "git",
     "url": "git+https://github.com/Kozazavr/mesto-react.git"
   },
-  "homepage": "https://github.com/Kozazavr/mesto-react#readme",
+  "homepage": "http://Kozazavr.github.io/mesto-react/",
   "author": "Ann",
   "eslintConfig": {
     "extends": [
