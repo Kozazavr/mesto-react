@@ -6,3 +6,4 @@
 
 Реализована сборка проекта через Webpack, минификация и транспиляция JS через Babel.
 
+Адрес проекта: https://kozazavr.github.io/mesto-react/.
