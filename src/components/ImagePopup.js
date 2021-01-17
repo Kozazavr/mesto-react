@@ -5,7 +5,7 @@ function ImagePopup({onClose, card}) {
   return (
     <section className={`popup popup_view-images ${card ? 'popup_opened' : ''}`}>   
       <figure className="popup__picture-container">
-        <button type="button" className="popup__close popup__close_view-image" onClick={onClose}></button>
+        <button type="button" className="popup__close popup__close_view-image" onClick={onClose} />
         <img 
           className="popup__picture" 
           alt={`${card ? card.title : ''}`}

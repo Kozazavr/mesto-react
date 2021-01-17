@@ -37,16 +37,16 @@ function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
         <div className="profile__container">
           <div  className="profile__container-avatar" style={{ backgroundImage: `url(${userAvatar})` }}>
             <div className="profile__avatar-cover">
-              <button className="profile__button-edit-avatar" type="button" onClick={onEditAvatar}></button>
+              <button className="profile__button-edit-avatar" type="button" onClick={onEditAvatar} />
             </div>
           </div>
           <div className="profile__info">
             <h1 className="profile__name">{userName}</h1>
-            <button className="profile__button" type="button" onClick={onEditProfile}></button>
+            <button className="profile__button" type="button" onClick={onEditProfile} />
             <p className="profile__job">{userDescription}</p>
           </div>
         </div>
-        <button className="profile__button-add-images" type="button" onClick={onAddPlace}></button>
+        <button className="profile__button-add-images" type="button" onClick={onAddPlace} />
       </section>
       <section className="cards page__cards">
       {
