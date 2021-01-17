@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/Kozazavr/mesto-react.git/static/css/main.7e578d3c.chunk.css",
-    "main.js": "/Kozazavr/mesto-react.git/static/js/main.b4e3c701.chunk.js",
-    "main.js.map": "/Kozazavr/mesto-react.git/static/js/main.b4e3c701.chunk.js.map",
-    "runtime-main.js": "/Kozazavr/mesto-react.git/static/js/runtime-main.6c1d5ef4.js",
-    "runtime-main.js.map": "/Kozazavr/mesto-react.git/static/js/runtime-main.6c1d5ef4.js.map",
-    "static/js/2.7781c1b7.chunk.js": "/Kozazavr/mesto-react.git/static/js/2.7781c1b7.chunk.js",
-    "static/js/2.7781c1b7.chunk.js.map": "/Kozazavr/mesto-react.git/static/js/2.7781c1b7.chunk.js.map",
-    "static/js/3.10d7f6b1.chunk.js": "/Kozazavr/mesto-react.git/static/js/3.10d7f6b1.chunk.js",
-    "static/js/3.10d7f6b1.chunk.js.map": "/Kozazavr/mesto-react.git/static/js/3.10d7f6b1.chunk.js.map",
-    "index.html": "/Kozazavr/mesto-react.git/index.html",
-    "static/css/main.7e578d3c.chunk.css.map": "/Kozazavr/mesto-react.git/static/css/main.7e578d3c.chunk.css.map",
-    "static/js/2.7781c1b7.chunk.js.LICENSE.txt": "/Kozazavr/mesto-react.git/static/js/2.7781c1b7.chunk.js.LICENSE.txt",
-    "static/media/index.css": "/Kozazavr/mesto-react.git/static/media/profile_plus.d86bb2ed.svg",
-    "static/media/header_logo.a307e1c4.svg": "/Kozazavr/mesto-react.git/static/media/header_logo.a307e1c4.svg"
+    "main.css": "/Kozazavr/mesto-reactstatic/css/main.8f611d76.chunk.css",
+    "main.js": "/Kozazavr/mesto-reactstatic/js/main.b4e3c701.chunk.js",
+    "main.js.map": "/Kozazavr/mesto-reactstatic/js/main.b4e3c701.chunk.js.map",
+    "runtime-main.js": "/Kozazavr/mesto-reactstatic/js/runtime-main.942bcc61.js",
+    "runtime-main.js.map": "/Kozazavr/mesto-reactstatic/js/runtime-main.942bcc61.js.map",
+    "static/js/2.7781c1b7.chunk.js": "/Kozazavr/mesto-reactstatic/js/2.7781c1b7.chunk.js",
+    "static/js/2.7781c1b7.chunk.js.map": "/Kozazavr/mesto-reactstatic/js/2.7781c1b7.chunk.js.map",
+    "static/js/3.10d7f6b1.chunk.js": "/Kozazavr/mesto-reactstatic/js/3.10d7f6b1.chunk.js",
+    "static/js/3.10d7f6b1.chunk.js.map": "/Kozazavr/mesto-reactstatic/js/3.10d7f6b1.chunk.js.map",
+    "index.html": "/Kozazavr/mesto-reactindex.html",
+    "static/css/main.8f611d76.chunk.css.map": "/Kozazavr/mesto-reactstatic/css/main.8f611d76.chunk.css.map",
+    "static/js/2.7781c1b7.chunk.js.LICENSE.txt": "/Kozazavr/mesto-reactstatic/js/2.7781c1b7.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/Kozazavr/mesto-reactstatic/media/profile_plus.d86bb2ed.svg",
+    "static/media/header_logo.a307e1c4.svg": "/Kozazavr/mesto-reactstatic/media/header_logo.a307e1c4.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.6c1d5ef4.js",
+    "static/js/runtime-main.942bcc61.js",
     "static/js/2.7781c1b7.chunk.js",
-    "static/css/main.7e578d3c.chunk.css",
+    "static/css/main.8f611d76.chunk.css",
     "static/js/main.b4e3c701.chunk.js"
   ]
 }
