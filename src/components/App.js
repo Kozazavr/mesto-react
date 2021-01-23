@@ -4,6 +4,7 @@ import Main from './Main.js';
 import Footer from './Footer.js';
 import PopupWithForm from './PopupWithForm.js';
 import ImagePopup from './ImagePopup.js';
+import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 import { Route } from 'react-router-dom';
 
 
@@ -13,6 +14,7 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState(null);
+  // const [currentUser, setCurrentUser] = React.useState([]);
   
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);
@@ -40,7 +42,15 @@ function App() {
     setSelectedCard(null);
   }
 
+  // React.useEffect(() => {
+  //   api.getProfileData()
+  //     .then(data => {
+  //       setCurrentUser([data.name, data.about, data.avatar]);
+  //     }) 
+  // }, []);
+
   return (
+  <CurrentUserContext.Provider value={currentUser}>
   <div className="page">
     <div className="page__container">
       <Header />
@@ -91,6 +101,7 @@ function App() {
       <Footer />
     </div>
   </div>
+  </CurrentUserContext.Provider>
   );
 }
 
