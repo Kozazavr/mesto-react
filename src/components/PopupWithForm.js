@@ -1,9 +1,10 @@
-import React from 'react'; 
+import React from 'react';
 
-function PopupWithForm({title, name, titleButton, children, isOpen, onClose}) {
+function PopupWithForm({title, name, titleButton, children, isOpen, onClose, onSubmit}) {
+  
   return (
     <section className={`popup popup_${name} ${isOpen}`}>
-      <form className="popup__container" name={name} noValidate>
+      <form className="popup__container" name={name} /*onSubmit={onSubmit}*/ noValidate>
         <button type="button" className="popup__close popup__close_profile" onClick={onClose} />
         <h2 className="popup__title">{title}</h2>
         {children}
@@ -14,3 +15,4 @@ function PopupWithForm({title, name, titleButton, children, isOpen, onClose}) {
 }
 
 export default PopupWithForm;
+
