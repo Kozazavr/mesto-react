@@ -4,7 +4,8 @@ import Main from './Main.js';
 import Footer from './Footer.js';
 import PopupWithForm from './PopupWithForm.js';
 import ImagePopup from './ImagePopup.js';
-import EditProfilePopup from './EditProfilePopup.js'
+import EditProfilePopup from './EditProfilePopup.js';
+import EditAvatarPopup from './EditAvatarPopup.js';
 import api from '../utils/Api.js';
 import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 // import { Route } from 'react-router-dom';
@@ -15,8 +16,11 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState(null);
-  const [currentUser, setCurrentUser] = React.useState([]);
+  const [currentUser, setCurrentUser] = React.useState({});
   
+ console.log(currentUser.avatar);
+ console.log(currentUser.name);
+
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);
   }
@@ -47,6 +51,15 @@ function App() {
     setCurrentUser(data);
     closeAllPopups();
   } 
+
+  function handleUpdateAvatar(data) {
+    api.editAvatar(data.avatar)
+    .then(data);
+    console.log(data);
+    setCurrentUser(data);
+    console.log(currentUser);
+    closeAllPopups();
+  }
 
   React.useEffect(() => {
     api.getProfileData()
@@ -82,15 +95,7 @@ function App() {
         </div>
       </PopupWithForm>
       <PopupWithForm title="Вы уверены?" name="delete-images" titleButton="Да" />
-      <PopupWithForm title="Обновить аватар" name="avatar" titleButton="Сохранить"
-        isOpen={isEditAvatarPopupOpen ? 'popup_opened' : ''}
-        onClose={closeAllPopups}>
-        <div className="popup__field">
-          <input id="input-avatar" type="url" className="popup__input popup__input_type_avatar" minLength="2"
-            name="popup_avatar" autoComplete="off" placeholder="Ссылка на картинку" required/>
-          <span id="input-avatar-error" className="popup__input-error"></span>
-        </div>
-      </PopupWithForm>
+      <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
       <ImagePopup card={selectedCard} onClose={closeAllPopups}/>
       <Footer />
     </div>

@@ -37,9 +37,8 @@ function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
     });
 
   }
-
-
-  return (
+ 
+   return (
     <main className="page__content">
       <section className="profile page__profile">
         <div className="profile__container">
