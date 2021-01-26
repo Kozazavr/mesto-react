@@ -40,15 +40,14 @@ function App() {
     setSelectedCard(null);
   }
 
+
   function handleUpdateUser(data) {
-    console.log(data);
-    // api.editProfile(data)
-    // .then(data => {
-    //   setCurrentUser(data);
-    // })
+    api.editProfile(data)
+    .then(data);
+    setCurrentUser(data);
+    closeAllPopups();
   } 
 
- 
   React.useEffect(() => {
     api.getProfileData()
       .then(data => {
