@@ -11,7 +11,7 @@ function EditAvatarPopup({isOpen, onClose, onUpdateAvatar}) {
         onUpdateAvatar({
           avatar: urlRef.current.value,
         });
-      } 
+    } 
 
     return (
       <PopupWithForm title="Обновить аватар" name="avatar" titleButton="Сохранить"

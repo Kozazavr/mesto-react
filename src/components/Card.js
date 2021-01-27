@@ -9,7 +9,6 @@ function Card({card, onCardClick, onCardLike, onCardDelete}) {
     `card__recycle-bin ${isOwn ? 'card__recycle-bin' : 'card__recycle-bin-hide'}`
   ); 
   
-  console.log(currentUser._id);
   const isLiked = card.likes.some(i => i._id === currentUser._id);
   const cardLikeButtonClassName = (
     `card__like ${isLiked ? 'card__like_target' : 'card__like'}`
