@@ -55,6 +55,12 @@ class Api {
         about: data.about
       })
     })
+    .then((res) => {
+      if(res.ok) {
+        return res.json();
+      }
+        return Promise.reject(`Ошибка: ${res.status}`);
+    });
   }
 
   deleteCard(cardId) {
@@ -102,11 +108,17 @@ class Api {
       headers: this._headers,
       body: JSON.stringify({
         avatar: avatar,
-      })
-    })
+      })})
+      .then((res) => {
+        if(res.ok) {
+          return res.json();
+        }
+          return Promise.reject(`Ошибка: ${res.status}`);
+      });
   }
-
 }
+  
+
 
 
 const api = new Api({  

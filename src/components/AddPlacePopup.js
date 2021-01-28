@@ -15,12 +15,10 @@ function AddPlacePopup({isOpen, onClose, onUpdateUser}) {
     }
 
     function handleSubmit(e) {
-        console.log(e);
-        e.preventDefault();// Запрещаем браузеру переходить по адресу формы
-        console.log(name);
+        e.preventDefault();
         onUpdateUser({ 
             name,
-            url,
+            link: url
         });
      } 
 

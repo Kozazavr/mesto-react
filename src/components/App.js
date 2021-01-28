@@ -9,7 +9,7 @@ import EditAvatarPopup from './EditAvatarPopup.js';
 import AddPlacePopup from './AddPlacePopup.js';
 import api from '../utils/Api.js';
 import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
-// import { Route } from 'react-router-dom';
+
 
 function App() {
 
@@ -45,14 +45,12 @@ function App() {
 
   function handleUpdateUser(data) {
     api.editProfile(data)
-    .then((item) => {
-      setCurrentUser(item)
+    .then((data) => {
+      setCurrentUser(data)
     })
+    closeAllPopups();
   } 
 
-  // React.useEffect(() => {
-  //   setCurrentUser(currentUser);
-  // }, [currentUser]);
 
   function handleUpdateAvatar(data) {
     api.editAvatar(data.avatar)
@@ -91,9 +89,10 @@ function App() {
   }
 
   function handleAddPlaceSubmit(data) {
+    console.log(data);
     api.addCard(data)
     .then((newCard) => {
-      setCards([newCard, ...cards]); 
+       setCards([...cards, newCard]); 
     })
     closeAllPopups();
   }
@@ -129,7 +128,8 @@ function App() {
       />
       <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser}/>  
       <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onUpdateUser={handleAddPlaceSubmit}/>
-      <PopupWithForm title="Вы уверены?" name="delete-images" titleButton="Да" />
+      <PopupWithForm title="Вы уверены?" name="delete-images" titleButton="Да" 
+       isOpen={isOpen ? 'popup_opened' : ''} onClose={onClose} onSubmit={handleSubmit}/>
       <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
       <ImagePopup card={selectedCard} onClose={closeAllPopups}/>
       <Footer />
