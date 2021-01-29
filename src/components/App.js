@@ -20,19 +20,26 @@ function App() {
   const [currentUser, setCurrentUser] = React.useState({});
   const [cards, setCards] = React.useState([]);
   const [isDeleteCardPopupOpen, setIsDeleteCardPopupOpen] = React.useState(false);
-  const [deleteCard, setDeleteCard ] = React.useState(null);
+  const [deleteCard, setDeleteCard] = React.useState(null);
+  const [loading, setLoading] = React.useState(false);
+
+  const [validity, setValidity] = React.useState(false);///////////////
 
     
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);
+    setLoading(false);
+    setValidity(true);/////////////////////////////////////
   }
 
   function handleAddPlaceClick() {
     setIsAddPlacePopupOpen(true);
+    setLoading(false);
   }
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
+    setLoading(false);
   }
 
   function handleCardClick(card) {
@@ -48,6 +55,7 @@ function App() {
   }
 
   function handleUpdateUser(data) {
+    setLoading(true);
     api.editProfile(data)
     .then((data) => {
       setCurrentUser(data)
@@ -57,6 +65,7 @@ function App() {
 
 
   function handleUpdateAvatar(data) {
+    setLoading(true);
     api.editAvatar(data.avatar)
     .then((item) => {
       setCurrentUser(item)
@@ -80,12 +89,14 @@ function App() {
   }
 
   function handleCardDelete(card) {
+    setLoading(false);
     setIsDeleteCardPopupOpen(true);
     setDeleteCard(card);
   }
   
   function handleSubmit(e) {
     e.preventDefault();
+    setLoading(true);
   
     api.deleteCard(deleteCard._id).then((newCard) => {
       const newCards = cards.filter((c) => c._id !== deleteCard._id);
@@ -96,6 +107,7 @@ function App() {
  
 
   function handleAddPlaceSubmit(data) {
+    setLoading(true);
     api.addCard(data)
     .then((newCard) => {
        setCards([...cards, newCard]); 
@@ -131,11 +143,11 @@ function App() {
                 onCardLike={handleCardLike}
                 onCardDelete={handleCardDelete}
           />
-          <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser}/>  
-          <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onUpdateUser={handleAddPlaceSubmit}/>
-          <PopupWithForm title="Вы уверены?" name="delete-images" titleButton="Да" 
+          <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} loading={loading} validity={validity}/>  
+          <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onUpdateUser={handleAddPlaceSubmit} loading={loading}/>
+          <PopupWithForm title="Вы уверены?" name="delete-images" titleButton={!loading ? "Да" : "Удаление..."} 
            isOpen={isDeleteCardPopupOpen ? 'popup_opened' : ''} onClose={closeAllPopups} onSubmit={handleSubmit}/>
-          <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
+          <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} loading={loading}/>
           <ImagePopup card={selectedCard} onClose={closeAllPopups}/>
           <Footer />
         </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import PopupWithForm from './PopupWithForm.js';
 
-function EditAvatarPopup({isOpen, onClose, onUpdateAvatar}) {
+function EditAvatarPopup({isOpen, onClose, onUpdateAvatar, loading}) {
 
     const urlRef = React.useRef('');
 
@@ -19,7 +19,7 @@ function EditAvatarPopup({isOpen, onClose, onUpdateAvatar}) {
 
     return (
       <PopupWithForm title="Обновить аватар" name="avatar" titleButton="Сохранить"
-        isOpen={isOpen ? 'popup_opened' : ''} onClose={onClose} onSubmit={handleSubmit}>
+        isOpen={isOpen ? 'popup_opened' : ''} onClose={onClose} onSubmit={handleSubmit} loading={loading}>
         <div className="popup__field">
           <input id="input-avatar" type="url" className="popup__input popup__input_type_avatar" minLength="2"
             name="popup_avatar" autoComplete="off" placeholder="Ссылка на картинку" ref={urlRef}  required/>

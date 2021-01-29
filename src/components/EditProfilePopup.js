@@ -2,7 +2,7 @@ import React from 'react';
 import PopupWithForm from './PopupWithForm.js';
 import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 
-function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
+function EditProfilePopup({isOpen, onClose, onUpdateUser, loading, validity}) {
 
   const [name, setName] = React.useState('');
   const [description, setDescription] = React.useState(''); 
@@ -32,7 +32,7 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
   return (
 
     <PopupWithForm title="Редактировать профиль" name="profile" titleButton="Сохранить"
-    isOpen={isOpen ? 'popup_opened' : ''} onClose={onClose} onSubmit={handleSubmit}>
+    isOpen={isOpen ? 'popup_opened' : ''} onClose={onClose} onSubmit={handleSubmit} loading={loading} validity={validity}>
       <div className="popup__field">
         <input id="input-name" type="text" className="popup__input popup__input_type_name" minLength="2"
           maxLength="40" name="popup_name" autoComplete="off" placeholder="Имя" required value={name || ''} onChange={handleChangeName}/>

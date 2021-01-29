@@ -1,9 +1,9 @@
-.popup__button_delete {
+.popup__button_delete-images {
   margin-top: 31.35px;
 }
 
 @media screen and (max-width: 619px) {
-  .popup__button_delete {
+  .popup__button_delete-images {
     margin: 31.35px 0 0;
   }
 }   
