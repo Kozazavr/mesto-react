@@ -13,6 +13,10 @@ function EditAvatarPopup({isOpen, onClose, onUpdateAvatar}) {
         });
     } 
 
+    React.useEffect(() => {
+      urlRef.current.value = '';
+    }, [isOpen]);
+
     return (
       <PopupWithForm title="Обновить аватар" name="avatar" titleButton="Сохранить"
         isOpen={isOpen ? 'popup_opened' : ''} onClose={onClose} onSubmit={handleSubmit}>

@@ -4,34 +4,32 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 
 function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
 
-    const [name, setName] = React.useState('');
-    const [description, setDescription] = React.useState(''); 
-    const currentUser = React.useContext(CurrentUserContext);
+  const [name, setName] = React.useState('');
+  const [description, setDescription] = React.useState(''); 
+  const currentUser = React.useContext(CurrentUserContext);
 
-   
-    function handleChangeName(e) {
-        setName(e.target.value);
-    }
+  function handleChangeName(e) {
+    setName(e.target.value);
+  }
 
-    function handleChangeDescription(e) {
-        setDescription(e.target.value);
-    }
+  function handleChangeDescription(e) {
+    setDescription(e.target.value);
+  }
 
-    function handleSubmit(e) {
-        e.preventDefault();// Запрещаем браузеру переходить по адресу формы
-        onUpdateUser({ // Передаём значения управляемых компонентов во внешний обработчик
-          name,
-          about: description,
-        });
-     } 
+  function handleSubmit(e) {
+    e.preventDefault();// Запрещаем браузеру переходить по адресу формы
+    onUpdateUser({ // Передаём значения управляемых компонентов во внешний обработчик
+      name,
+      about: description,
+    });
+  } 
 
-    React.useEffect(() => {
-      setName(currentUser.name);
-      setDescription(currentUser.about);
-    }, [currentUser]); 
+  React.useEffect(() => {
+    setName(currentUser.name);
+    setDescription(currentUser.about);
+  }, [currentUser]); 
 
-
-    return (
+  return (
 
     <PopupWithForm title="Редактировать профиль" name="profile" titleButton="Сохранить"
     isOpen={isOpen ? 'popup_opened' : ''} onClose={onClose} onSubmit={handleSubmit}>
@@ -46,7 +44,7 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
         <span id="input-job-error" className="popup__input-error"></span>
       </div>
     </PopupWithForm>
-    )
+  )
 }
 
 export default EditProfilePopup;

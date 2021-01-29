@@ -19,7 +19,10 @@ function App() {
   const [selectedCard, setSelectedCard] = React.useState(null);
   const [currentUser, setCurrentUser] = React.useState({});
   const [cards, setCards] = React.useState([]);
-  
+  const [isDeleteCardPopupOpen, setIsDeleteCardPopupOpen] = React.useState(false);
+  const [deleteCard, setDeleteCard ] = React.useState(null);
+
+    
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);
   }
@@ -41,6 +44,7 @@ function App() {
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
     setSelectedCard(null);
+    setIsDeleteCardPopupOpen(false);
   }
 
   function handleUpdateUser(data) {
@@ -56,12 +60,6 @@ function App() {
     api.editAvatar(data.avatar)
     .then((item) => {
       setCurrentUser(item)
-    })
-    .then((item) => {
-      api.getProfileData()
-      .then(data => {
-        setCurrentUser(data);
-      }) 
     })
     closeAllPopups();
   }
@@ -82,14 +80,22 @@ function App() {
   }
 
   function handleCardDelete(card) {
-    api.deleteCard(card._id).then((newCard) => {
-      const newCards = cards.filter((c) => c._id !== card._id);
+    setIsDeleteCardPopupOpen(true);
+    setDeleteCard(card);
+  }
+  
+  function handleSubmit(e) {
+    e.preventDefault();
+  
+    api.deleteCard(deleteCard._id).then((newCard) => {
+      const newCards = cards.filter((c) => c._id !== deleteCard._id);
       setCards(newCards);
     });
+    closeAllPopups();
   }
+ 
 
   function handleAddPlaceSubmit(data) {
-    console.log(data);
     api.addCard(data)
     .then((newCard) => {
        setCards([...cards, newCard]); 
@@ -97,7 +103,6 @@ function App() {
     closeAllPopups();
   }
 
- 
   React.useEffect(() => {
     api.getProfileData()
       .then(data => {
@@ -112,30 +117,30 @@ function App() {
       }) 
   }, []);
 
-   return (
+  return (
    
-  <CurrentUserContext.Provider value={currentUser}>
-  <div className="page">
-    <div className="page__container">
-      <Header />
-      <Main onEditProfile={handleEditProfileClick}
-            onAddPlace={handleAddPlaceClick}
-            onEditAvatar={handleEditAvatarClick}
-            onCardClick={handleCardClick}
-            cards={cards}
-            onCardLike={handleCardLike}
-            onCardDelete={handleCardDelete}
-      />
-      <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser}/>  
-      <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onUpdateUser={handleAddPlaceSubmit}/>
-      <PopupWithForm title="Вы уверены?" name="delete-images" titleButton="Да" 
-       isOpen={isOpen ? 'popup_opened' : ''} onClose={onClose} onSubmit={handleSubmit}/>
-      <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
-      <ImagePopup card={selectedCard} onClose={closeAllPopups}/>
-      <Footer />
-    </div>
-  </div>
-  </CurrentUserContext.Provider>
+    <CurrentUserContext.Provider value={currentUser}>
+      <div className="page">
+        <div className="page__container">
+          <Header />
+          <Main onEditProfile={handleEditProfileClick}
+                onAddPlace={handleAddPlaceClick}
+                onEditAvatar={handleEditAvatarClick}
+                onCardClick={handleCardClick}
+                cards={cards}
+                onCardLike={handleCardLike}
+                onCardDelete={handleCardDelete}
+          />
+          <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser}/>  
+          <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onUpdateUser={handleAddPlaceSubmit}/>
+          <PopupWithForm title="Вы уверены?" name="delete-images" titleButton="Да" 
+           isOpen={isDeleteCardPopupOpen ? 'popup_opened' : ''} onClose={closeAllPopups} onSubmit={handleSubmit}/>
+          <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
+          <ImagePopup card={selectedCard} onClose={closeAllPopups}/>
+          <Footer />
+        </div>
+      </div>
+    </CurrentUserContext.Provider>
   );
 }
 

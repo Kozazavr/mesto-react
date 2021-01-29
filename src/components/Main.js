@@ -6,8 +6,7 @@ function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick, cards, onCa
 
   const currentUser = React.useContext(CurrentUserContext);
 
-
-   return (
+  return (
     <main className="page__content">
       <section className="profile page__profile">
         <div className="profile__container">

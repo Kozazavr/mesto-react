@@ -3,24 +3,29 @@ import PopupWithForm from './PopupWithForm.js';
 
 function AddPlacePopup({isOpen, onClose, onUpdateUser}) {
 
-    const [name, setName] = React.useState('');
-    const [url, setUrl] = React.useState(''); 
+  const [name, setName] = React.useState('');
+  const [url, setUrl] = React.useState(''); 
   
-    function handleSetName(e) {
-        setName(e.target.value);
-    }
+  function handleSetName(e) {
+    setName(e.target.value);
+  }
 
-    function handleSetUrl (e) {
-        setUrl(e.target.value);
-    }
+  function handleSetUrl (e) {
+    setUrl(e.target.value);
+  }
 
-    function handleSubmit(e) {
-        e.preventDefault();
-        onUpdateUser({ 
-            name,
-            link: url
-        });
-     } 
+  function handleSubmit(e) {
+    e.preventDefault();
+    onUpdateUser({ 
+      name,
+      link: url
+    });
+  } 
+
+  React.useEffect(() => {
+    setName('');
+    setUrl('');
+  }, [isOpen]);
 
   return (
     <PopupWithForm title="Новое место" name="add-images" titleButton="Создать"
