@@ -7,7 +7,7 @@ import ImagePopup from './ImagePopup.js';
 import EditProfilePopup from './EditProfilePopup.js';
 import EditAvatarPopup from './EditAvatarPopup.js';
 import AddPlacePopup from './AddPlacePopup.js';
-// import api from '../utils/Api.js';
+import api from '../utils/api.js';
 import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 
 
@@ -23,13 +23,10 @@ function App() {
   const [deleteCard, setDeleteCard] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
 
-  const [validity, setValidity] = React.useState(false);///////////////
-
     
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);
     setLoading(false);
-    setValidity(true);/////////////////////////////////////
   }
 
   function handleAddPlaceClick() {
@@ -60,9 +57,11 @@ function App() {
     .then((data) => {
       setCurrentUser(data)
     })
+    .catch((err) => {
+      console.log(err);
+    });
     closeAllPopups();
   } 
-
 
   function handleUpdateAvatar(data) {
     setLoading(true);
@@ -70,6 +69,9 @@ function App() {
     .then((item) => {
       setCurrentUser(item)
     })
+    .catch((err) => {
+      console.log(err);
+    });
     closeAllPopups();
   }
 
@@ -79,11 +81,17 @@ function App() {
       api.setLike(card._id).then((newCard) => {
         const newCards = cards.map((c) => c._id === card._id ? newCard : c);
         setCards(newCards);
+      })
+      .catch((err) => {
+        console.log(err);
       });
     } else {
       api.unLike(card._id).then((newCard) => {
         const newCards = cards.map((c) => c._id === card._id ? newCard : c);
         setCards(newCards);
+      })
+      .catch((err) => {
+        console.log(err);
       });
     }
   }
@@ -101,6 +109,9 @@ function App() {
     api.deleteCard(deleteCard._id).then((newCard) => {
       const newCards = cards.filter((c) => c._id !== deleteCard._id);
       setCards(newCards);
+    })
+    .catch((err) => {
+      console.log(err);
     });
     closeAllPopups();
   }
@@ -110,8 +121,11 @@ function App() {
     setLoading(true);
     api.addCard(data)
     .then((newCard) => {
-       setCards([...cards, newCard]); 
+       setCards([newCard, ...cards]); 
     })
+    .catch((err) => {
+      console.log(err);
+    });
     closeAllPopups();
   }
 
@@ -120,13 +134,19 @@ function App() {
       .then(data => {
         setCurrentUser(data);
       }) 
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   React.useEffect(() => {
     api.getCards()
       .then(data => {
-        setCards(data.map((item) => item))
+        setCards(data)
       }) 
+      .catch((err) => {
+        console.log(err);
+      }); 
   }, []);
 
   return (
@@ -143,7 +163,7 @@ function App() {
                 onCardLike={handleCardLike}
                 onCardDelete={handleCardDelete}
           />
-          <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} loading={loading} validity={validity}/>  
+          <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} loading={loading}/>  
           <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onUpdateUser={handleAddPlaceSubmit} loading={loading}/>
           <PopupWithForm title="Вы уверены?" name="delete-images" titleButton={!loading ? "Да" : "Удаление..."} 
            isOpen={isDeleteCardPopupOpen ? 'popup_opened' : ''} onClose={closeAllPopups} onSubmit={handleSubmit}/>

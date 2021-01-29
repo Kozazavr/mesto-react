@@ -25,12 +25,12 @@ function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick, cards, onCa
       </section>
       <section className="cards page__cards">
       {
-        cards.map((card) => 
+        cards.map((card) => (
         <Card key={card._id} card={card} 
         onCardClick={onCardClick}
         onCardLike={onCardLike}
         onCardDelete={onCardDelete}/>)
-      }  
+      )}  
       </section> 
     </main>
   );
